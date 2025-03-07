@@ -83,6 +83,12 @@ return {
     { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
     { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
     { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+    -- terminal
+    { "<c-\\>", function() Snacks.terminal.toggle() end, mode = {"n", "t"}, desc = "Toggle Terminal" },
+    { "<c-h>", [[<C-\><C-n><C-W>h]], mode = "t", desc = "Window Movement: Move Left" },
+    { "<c-j>", [[<C-\><C-n><C-W>j]], mode = "t", desc = "Window Movement: Move Down" },
+    { "<c-k>", [[<C-\><C-n><C-W>k]], mode = "t", desc = "Window Movement: Move Up" },
+    { "<c-l>", [[<C-\><C-n><C-W>l]], mode = "t", desc = "Window Movement: Move Right" },
     -- Other
     { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
     { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
@@ -94,8 +100,7 @@ return {
     { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
     { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
     { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-    { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
-    { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
+
     { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
     { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
     {
