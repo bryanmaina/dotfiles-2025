@@ -1,5 +1,7 @@
 return {
 	"nvim-lua/plenary.nvim",
+	{ "nvim-tree/nvim-web-devicons", lazy = true },
+
 	{
 		"nvchad/base46",
 		build = function()

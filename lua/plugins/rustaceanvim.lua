@@ -24,11 +24,19 @@ return {
 			mode = { "n" },
 		},
 		{
+			"<Leader>rn",
+			function()
+				require("neotest").run.run()
+			end,
+			desc = "Toggle test summary window",
+			mode = { "n" },
+		},
+		{
 			"<Leader>rs",
 			function()
 				require("neotest").summary.toggle()
 			end,
-			desc = "Toogle test summary window",
+			desc = "Toggle test summary window",
 			mode = { "n" },
 		},
 		{
@@ -36,7 +44,7 @@ return {
 			function()
 				require("neotest").watch.toggle(vim.fn.expand("%"))
 			end,
-			desc = "Toogle test summary window and watch",
+			desc = "Toggle test summary window and watch",
 			mode = { "n" },
 		},
 	},
