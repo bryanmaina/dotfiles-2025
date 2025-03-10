@@ -31,6 +31,14 @@ return {
 			desc = "Toogle test summary window",
 			mode = { "n" },
 		},
+		{
+			"<Leader>rw",
+			function()
+				require("neotest").watch.toggle(vim.fn.expand("%"))
+			end,
+			desc = "Toogle test summary window and watch",
+			mode = { "n" },
+		},
 	},
 	config = function()
 		local extension_path = vim.env.HOME .. "/.vscode-server/extensions/vadimcn.vscode-lldb-1.11.4/"
