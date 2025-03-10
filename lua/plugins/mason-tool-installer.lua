@@ -19,7 +19,6 @@ return {
 			"delve",
 			"astro-language-server",
 			"stylua",
-			"lua_ls",
 		},
 	},
 }
