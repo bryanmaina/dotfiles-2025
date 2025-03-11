@@ -16,23 +16,31 @@ return {
 	keys = {
 		-- { "<Leader>rt", "<cmd>lua vim.cmd('RustLsp testables')<CR>", desc = "Run rust tests", mode = { "n" } },
 		{
-			"<Leader>rt",
+			"<leader>ca",
+			function()
+				vim.cmd.RustLsp("codeAction")
+			end,
+			desc = "Grouped Code Actions",
+			mode = { "n" },
+		},
+		{
+			"<leader>rt",
 			function()
 				require("neotest").run.run(vim.fn.expand("%"))
 			end,
-			desc = "Run rust tests",
+			desc = "Run current file tests",
 			mode = { "n" },
 		},
 		{
-			"<Leader>rn",
+			"<leader>rn",
 			function()
 				require("neotest").run.run()
 			end,
-			desc = "Toggle test summary window",
+			desc = "Run the nearest test",
 			mode = { "n" },
 		},
 		{
-			"<Leader>rs",
+			"<leader>rs",
 			function()
 				require("neotest").summary.toggle()
 			end,
@@ -40,7 +48,7 @@ return {
 			mode = { "n" },
 		},
 		{
-			"<Leader>rw",
+			"<leader>rw",
 			function()
 				require("neotest").watch.toggle(vim.fn.expand("%"))
 			end,

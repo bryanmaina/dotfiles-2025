@@ -42,6 +42,7 @@ return {
 				"git_rebase",
 				"gitcommit",
 				"gitignore",
+				"java",
 				"lua",
 				"luadoc",
 				"markdown",

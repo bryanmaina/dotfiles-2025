@@ -3,15 +3,20 @@ return {
 	dependencies = {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
-	opts = {
-		ui = {
-			icons = {
-				package_installed = "✓",
-				package_pending = "➜",
-				package_uninstalled = "✗",
+	opts = function()
+		dofile(vim.g.base46_cache .. "mason")
+		return {
+			-- PATH = "skip",
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
 			},
-		},
-	},
+			-- max_concurrent_installers = 10,
+		}
+	end,
 	-- config = function()      -- enable mason and configure icons
 	--   require("mason").setup({
 	--     ui = {
