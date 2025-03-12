@@ -45,6 +45,12 @@ local options = {
 		end, { "i", "s" }),
 	},
 
+	formatting = {
+		format = require("lspkind").cmp_format({
+			before = require("tailwind-tools.cmp").lspkind_format,
+		}),
+	},
+
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },

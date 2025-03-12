@@ -9,7 +9,7 @@ return {
 			opts = { history = true, updateevents = "TextChanged,TextChangedI" },
 			config = function(_, opts)
 				require("luasnip").config.set_config(opts)
-				require("customs.luasnip")
+				require("customs.luasnipconfig")
 			end,
 		},
 
@@ -29,6 +29,10 @@ return {
 			end,
 		},
 
+
+    -- needed for tailwind-tools source
+		{ "onsails/lspkind-nvim" },
+
 		-- cmp sources plugins
 		{
 			"saadparwaiz1/cmp_luasnip",
@@ -36,9 +40,11 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"saecki/crates.nvim",
+			"tailwind-tools",
 		},
 	},
 	opts = function()
-		return require("customs.cmp")
+		return require("customs.cmpconfig")
 	end,
 }
