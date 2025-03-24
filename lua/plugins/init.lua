@@ -17,6 +17,8 @@ return {
 		end,
 	},
 
+  "nvchad/volt",
+
 	{
 		"folke/which-key.nvim",
 		keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },

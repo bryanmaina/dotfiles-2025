@@ -369,6 +369,14 @@ return {
 			nowait = true,
 			desc = "References",
 		},
+		-- {
+		-- 	"gr",
+		-- 	function()
+		-- 		require("customs.referencepicker").references()
+		-- 	end,
+		-- 	nowait = true,
+		-- 	desc = "References",
+		-- },
 		{
 			"gI",
 			function()

@@ -16,7 +16,7 @@ return {
 	keys = {
 		-- { "<Leader>rt", "<cmd>lua vim.cmd('RustLsp testables')<CR>", desc = "Run rust tests", mode = { "n" } },
 		{
-			"<leader>ca",
+			"<leader>a",
 			function()
 				vim.cmd.RustLsp("codeAction")
 			end,
