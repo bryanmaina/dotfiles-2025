@@ -17,7 +17,7 @@ return {
 		end,
 	},
 
-  "nvchad/volt",
+	"nvchad/volt",
 
 	{
 		"folke/which-key.nvim",
@@ -28,19 +28,4 @@ return {
 			return {}
 		end,
 	},
-
-  {
-    "nvimdev/lspsaga.nvim",
-    -- ft = { "rust" },
-    config = function()
-      require("lspsaga").setup {
-        finder_action_keys = { open = "<CR>" },
-        definition_action_keys = { edit = "<CR>" },
-      }
-    end,
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter", -- optional
-      "nvim-tree/nvim-web-devicons", -- optional
-    },
-  },
 }
