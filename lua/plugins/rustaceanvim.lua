@@ -15,14 +15,14 @@ return {
 	ft = { "rust" },
 	keys = {
 		-- { "<Leader>rt", "<cmd>lua vim.cmd('RustLsp testables')<CR>", desc = "Run rust tests", mode = { "n" } },
-		{
-			"<leader>a",
-			function()
-				vim.cmd.RustLsp("codeAction")
-			end,
-			desc = "Grouped Code Actions",
-			mode = { "n" },
-		},
+		-- {
+		-- 	"<leader>a",
+		-- 	function()
+		-- 		vim.cmd.RustLsp("codeAction")
+		-- 	end,
+		-- 	desc = "Grouped Code Actions",
+		-- 	mode = { "n" },
+		-- },
 		{
 			"<leader>rt",
 			function()
