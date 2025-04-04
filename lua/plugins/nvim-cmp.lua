@@ -29,8 +29,8 @@ return {
 			end,
 		},
 
-
-    -- needed for tailwind-tools source
+		"tailwind-tools",
+		-- needed for tailwind-tools source
 		{ "onsails/lspkind-nvim" },
 
 		-- cmp sources plugins
@@ -41,7 +41,6 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"saecki/crates.nvim",
-			"tailwind-tools",
 		},
 	},
 	opts = function()

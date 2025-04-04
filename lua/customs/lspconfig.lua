@@ -56,7 +56,9 @@ M.defaults = function()
 	dofile(vim.g.base46_cache .. "lsp")
 	require("nvchad.lsp").diagnostic_config()
 
-	require("lspconfig").lua_ls.setup({
+	local lspconfig = require("lspconfig")
+
+	lspconfig.lua_ls.setup({
 		on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
@@ -78,6 +80,74 @@ M.defaults = function()
 					preloadFileSize = 10000,
 				},
 			},
+		},
+	})
+
+	-- lspconfig.tailwindcss.setup({
+	-- 	on_attach = M.on_attach,
+	-- 	capabilities = M.capabilities,
+	-- 	on_init = M.on_init,
+	-- 	filetypes = {
+	-- 		"css",
+	-- 		"scss",
+	-- 		"sass",
+	-- 		"postcss",
+	-- 		"html",
+	-- 		"javascript",
+	-- 		"javascriptreact",
+	-- 		"typescript",
+	-- 		"typescriptreact",
+	-- 		"svelte",
+	-- 		"vue",
+	-- 		"rust",
+	-- 		-- "rs",
+	-- 	},
+	-- 	experimental = {
+	-- 		classRegex = {
+	-- 			[[class="([^"]*)]],
+	-- 			'class=\\s+"([^"]*)',
+	-- 		},
+	-- 	},
+	-- 	root_dir = require("lspconfig").util.root_pattern(
+	-- 		"tailwind.config.js",
+	-- 		"tailwind.config.ts",
+	-- 		"postcss.config.js",
+	-- 		"postcss.config.ts",
+	-- 		"package.json",
+	-- 		"node_modules"
+	-- 	),
+	-- })
+
+	-- lspconfig["cssls"].setup({
+	-- 	on_attach = M.on_attach,
+	-- 	capabilities = M.capabilities,
+	-- 	on_init = M.on_init,
+	-- 	filetypes = {
+	-- 		"rust",
+	-- 	},
+	-- })
+
+	-- lspconfig["html"].setup({
+	-- 	on_attach = M.on_attach,
+	-- 	capabilities = M.capabilities,
+	-- 	on_init = M.on_init,
+	-- })
+
+	lspconfig.emmet_ls.setup({
+		on_attach = M.on_attach,
+		capabilities = M.capabilities,
+		on_init = M.on_init,
+		filetypes = {
+			"html",
+			"typescript",
+			"typescriptreact",
+			"javascriptreact",
+			"css",
+			"sass",
+			"scss",
+			"less",
+			"svelte",
+			"rust",
 		},
 	})
 end

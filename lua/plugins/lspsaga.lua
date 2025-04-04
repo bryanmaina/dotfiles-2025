@@ -14,7 +14,7 @@ return {
 	keys = {
 		{ "<leader>a", desc = "[C]ode [A]ction", "<cmd>Lspsaga code_action<CR>", mode = { "n" } },
 		{ "<leader>o", desc = "Toogle [O]utline", "<cmd>Lspsaga outline<CR>", mode = { "n" } },
-		{ "<leader>gp", desc = "[P]eek Definition", "<cmd>Lspsaga peek_definition<CR>", mode = { "n" } },
+		{ "gp", desc = "[P]eek Definition", "<cmd>Lspsaga peek_definition<CR>", mode = { "n" } },
 	},
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter", -- optional

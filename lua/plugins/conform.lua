@@ -33,7 +33,7 @@ return {
 			markdown = { "prettierd" },
 			proto = { "buf" },
 			ruby = { "standardrb" },
-			rust = { "rustfmt" },
+			rust = { "leptosfmt" },
 			scss = { "prettierd" },
 			sh = { "shellcheck" },
 			svelte = { "prettierd" },
