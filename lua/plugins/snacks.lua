@@ -342,7 +342,8 @@ return {
 		{
 			"<leader>uC",
 			function()
-				Snacks.picker.colorschemes()
+        require("nvchad.themes").open()
+				-- Snacks.picker.colorschemes()
 			end,
 			desc = "Colorschemes",
 		},
