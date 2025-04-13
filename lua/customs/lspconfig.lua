@@ -83,40 +83,40 @@ M.defaults = function()
 		},
 	})
 
-	-- lspconfig.tailwindcss.setup({
-	-- 	on_attach = M.on_attach,
-	-- 	capabilities = M.capabilities,
-	-- 	on_init = M.on_init,
-	-- 	filetypes = {
-	-- 		"css",
-	-- 		"scss",
-	-- 		"sass",
-	-- 		"postcss",
-	-- 		"html",
-	-- 		"javascript",
-	-- 		"javascriptreact",
-	-- 		"typescript",
-	-- 		"typescriptreact",
-	-- 		"svelte",
-	-- 		"vue",
-	-- 		"rust",
-	-- 		-- "rs",
-	-- 	},
-	-- 	experimental = {
-	-- 		classRegex = {
-	-- 			[[class="([^"]*)]],
-	-- 			'class=\\s+"([^"]*)',
-	-- 		},
-	-- 	},
-	-- 	root_dir = require("lspconfig").util.root_pattern(
-	-- 		"tailwind.config.js",
-	-- 		"tailwind.config.ts",
-	-- 		"postcss.config.js",
-	-- 		"postcss.config.ts",
-	-- 		"package.json",
-	-- 		"node_modules"
-	-- 	),
-	-- })
+	lspconfig.tailwindcss.setup({
+		on_attach = M.on_attach,
+		capabilities = M.capabilities,
+		on_init = M.on_init,
+		filetypes = {
+			"css",
+			"scss",
+			"sass",
+			"postcss",
+			"html",
+			"javascript",
+			"javascriptreact",
+			"typescript",
+			"typescriptreact",
+			"svelte",
+			"vue",
+			"rust",
+			-- "rs",
+		},
+		experimental = {
+			classRegex = {
+				[[class="([^"]*)]],
+				'class=\\s+"([^"]*)',
+			},
+		},
+		root_dir = require("lspconfig").util.root_pattern(
+			"tailwind.config.js",
+			"tailwind.config.ts",
+			"postcss.config.js",
+			"postcss.config.ts",
+			"package.json",
+			"node_modules"
+		),
+	})
 
 	-- lspconfig["cssls"].setup({
 	-- 	on_attach = M.on_attach,
