@@ -89,9 +89,9 @@ return {
 						--   allFeatures = true,
 						--   command = "clipy",
 						-- },
-						rustfmt = {
-							overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
-						},
+						-- rustfmt = {
+						-- 	overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
+						-- },
 						cargo = {
 							-- autoreload = true,
 							allFeatures = true,

@@ -43,5 +43,10 @@ return {
 			xml = { "xmllint" },
 			-- yaml = { "yamlfix" },
 		},
+		formatters = {
+			leptosfmt = {
+				prepend_args = { "--rustfmt" },
+			},
+		},
 	},
 }
