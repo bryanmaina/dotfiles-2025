@@ -58,6 +58,18 @@ M.defaults = function()
 
 	local lspconfig = require("lspconfig")
 
+	lspconfig.dockerls.setup({
+        settings = {
+        docker = {
+	    languageserver = {
+	        formatter = {
+		    ignoreMultilineInstructions = true,
+		},
+	    },
+	}
+    }
+  })
+
 	lspconfig.lua_ls.setup({
 		on_attach = M.on_attach,
 		capabilities = M.capabilities,

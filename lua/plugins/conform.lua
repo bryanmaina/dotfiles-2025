@@ -20,6 +20,7 @@ return {
 			astro = { "prettierd" },
 			bash = { "beautysh" },
 			css = { "prettierd" },
+			dockerfile = { "hadolint" },
 			erb = { "htmlbeautifier" },
 			graphql = { "prettierd" },
 			go = { "gofmt" },

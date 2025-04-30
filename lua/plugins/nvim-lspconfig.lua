@@ -21,6 +21,7 @@ return {
 					},
 				},
 			},
+			docker_compose_language_service = {},
 			-- Configuration for the yamlls [Yaml]
 			yamlls = {
 				settings = {
