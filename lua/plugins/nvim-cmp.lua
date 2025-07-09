@@ -16,8 +16,11 @@ return {
 		-- autopairing of (){}[] etc
 		{
 			"windwp/nvim-autopairs",
+			event = "InsertEnter",
 			opts = {
-				fast_wrap = {},
+				fast_wrap = {
+					chars = { "{", "[", "(", '"', "'", "<" },
+				},
 				disable_filetype = { "TelescopePrompt", "vim" },
 			},
 			config = function(_, opts)
@@ -29,7 +32,6 @@ return {
 			end,
 		},
 
-		"tailwind-tools",
 		-- needed for tailwind-tools source
 		{ "onsails/lspkind-nvim" },
 
@@ -42,6 +44,8 @@ return {
 			"hrsh7th/cmp-path",
 			"saecki/crates.nvim",
 		},
+
+		"tailwind-tools",
 	},
 	opts = function()
 		return require("customs.cmpconfig")

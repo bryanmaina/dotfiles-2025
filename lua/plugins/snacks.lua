@@ -242,14 +242,14 @@ return {
 			desc = "Commands",
 		},
 		{
-			"<leader>sd",
+			"<leader>sD",
 			function()
 				Snacks.picker.diagnostics()
 			end,
 			desc = "Diagnostics",
 		},
 		{
-			"<leader>sD",
+			"<leader>sd",
 			function()
 				Snacks.picker.diagnostics_buffer()
 			end,
@@ -342,7 +342,7 @@ return {
 		{
 			"<leader>uC",
 			function()
-        require("nvchad.themes").open()
+				require("nvchad.themes").open()
 				-- Snacks.picker.colorschemes()
 			end,
 			desc = "Colorschemes",

@@ -32,7 +32,7 @@ return {
 			mode = { "n" },
 		},
 		{
-			"<leader>rn",
+			"<leader>rh",
 			function()
 				require("neotest").run.run()
 			end,
@@ -66,9 +66,10 @@ return {
 		if this_os:find("Windows") then
 			codelldb_path = extension_path .. "adapter\\codelldb.exe"
 			liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
-			-- else
+		else
 			-- The liblldb extension is .so for Linux and .dylib for MacOS
-			-- liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+			-- codelldb_path = extension_path .. "adapter/codelldb"
+			liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
 		end
 
 		local cfg = require("rustaceanvim.config")
@@ -104,17 +105,17 @@ return {
 						hoverActions = {
 							enabled = true,
 						},
-						-- procMacro = {
-						--   enabled = true,
-						--   ignored = {
-						--     leptos_macro = {
-						--       -- "all",
-						--       -- optional:
-						--       "component",
-						--       -- "server",
-						--     },
-						--   },
-						-- },
+						procMacro = {
+							enabled = true,
+							ignored = {
+								leptos_macro = {
+									--       -- "all",
+									--       -- optional:
+									"component",
+									--       -- "server",
+								},
+							},
+						},
 						callInfo = {
 							full = true,
 						},

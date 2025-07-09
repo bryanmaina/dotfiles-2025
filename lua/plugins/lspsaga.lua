@@ -4,10 +4,66 @@ return {
 	cmd = "Lspsaga",
 	config = function()
 		require("lspsaga").setup({
-			finder_action_keys = { open = "<CR>" },
-			definition_action_keys = { edit = "<CR>" },
+			request_timeout = 5000,
+			diagnostic = {
+				show_layout = "normal",
+				show_normal_height = 0.5,
+				extend_relatedInformation = true,
+				keys = {
+					exec_action = "o",
+					quit = "q",
+					toggle_or_jump = "<cr>",
+					quit_in_show = { "q", "<esc>" },
+				},
+			},
+			definition = {
+				keys = {
+					edit = "<C-c>o",
+					vsplit = "<C-c>v",
+					split = "<C-c>s",
+					tabe = "<C-c>t",
+					quit = "q",
+					close = "<C-c>k",
+				},
+			},
+			finder = {
+				max_height = 0.4,
+				left_width = 0.3,
+				default = "def+ref+imp",
+				layout = "normal",
+				keys = {
+					toggle_or_open = "o",
+					vsplit = "v",
+					split = "s",
+					quit = "q",
+					close = "<c-c>k",
+				},
+			},
+			implement = {
+				enable = false,
+			},
 			lightbulb = {
-				sign = false,
+				enable = false,
+			},
+			outline = {
+				win_width = 60,
+				win_position = "right",
+				auto_preview = false,
+				auto_close = true,
+				layout = "normal",
+				keys = {
+					toggle_or_jump = "<cr>",
+					quit = "q",
+				},
+			},
+			rename = {
+				auto_save = true,
+			},
+			symbol_in_winbar = {
+				enable = false,
+			},
+			ui = {
+				title = false,
 			},
 		})
 	end,

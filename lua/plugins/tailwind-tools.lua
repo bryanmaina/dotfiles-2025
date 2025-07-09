@@ -7,10 +7,11 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		"nvim-telescope/telescope.nvim", -- optional
 		"neovim/nvim-lspconfig", -- optional
+		"onsails/lspkind-nvim",
 	},
 	opts = { -- your configuration
 		document_color = {
-			enabled = false, -- can be toggled by commands
+			enabled = true, -- can be toggled by commands
 			kind = "inline", -- "inline" | "foreground" | "background"
 			inline_symbol = "󰝤 ", -- only used in inline mode
 			debounce = 200, -- in milliseconds, only applied in insert mode

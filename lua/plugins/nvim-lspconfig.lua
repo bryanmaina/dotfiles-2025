@@ -7,6 +7,7 @@ return {
 	end,
 	opts = {
 		servers = {
+			-- angularls = {},
 			-- Configuration for the bashls [Shell]
 			bashls = {},
 			-- Configuration for the dockerls [Docker]
@@ -21,6 +22,38 @@ return {
 					},
 				},
 			},
+
+			-- pylsp = {
+			-- 	settings = {
+			-- 		pylsp = {
+			-- 			plugins = {
+			-- 				pyflakes = { enabled = false },
+			-- 				pycodestyle = { enabled = false },
+			-- 				autopep8 = { enabled = false },
+			-- 				yapf = { enabled = false },
+			-- 				mccabe = { enabled = false },
+			-- 				pylsp_mypy = { enabled = false },
+			-- 				pylsp_black = { enabled = false },
+			-- 				pylsp_isort = { enabled = false },
+			-- 			},
+			-- 		},
+			-- 	},
+			-- },
+
+			-- jdtls = {
+			-- 	settings = {
+			-- 		java = {
+			-- 			configuration = {
+			-- 				runtimes = {
+			-- 					{
+			-- 						name = "JavaSE-21",
+			-- 						path = "/home/mainab/.sdkman/candidates/java/21.0.7-tem/",
+			-- 					},
+			-- 				},
+			-- 			},
+			-- 		},
+			-- 	},
+			-- },
 			docker_compose_language_service = {},
 			-- Configuration for the yamlls [Yaml]
 			yamlls = {
@@ -47,5 +80,16 @@ return {
 				single_file_support = true,
 			},
 		},
+		-- setup = {
+		-- 	angularls = function()
+		-- 		LazyVim.lsp.on_attach(function(client)
+		-- 			--HACK: disable angular renaming capability due to duplicate rename popping up
+		--         client.server_capabilities.renameProvider = false
+		--       end, "angularls")
+		--     end,
+		-- 	jdtls = function()
+		-- 		require("java").setup({})
+		-- 	end,
+		-- },
 	},
 }

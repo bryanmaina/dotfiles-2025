@@ -4,6 +4,8 @@ local g = vim.g
 
 require("lspsaga.codeaction")
 
+g.lazyvim_picker = "telescope"
+
 -------------------------------------- options ------------------------------------------
 o.laststatus = 3
 o.showmode = false
@@ -13,7 +15,7 @@ o.cursorline = true
 o.cursorlineopt = "number"
 
 -- Indenting
-o.expandtab = true
+o.expandtab = false
 o.shiftwidth = 2
 o.smartindent = true
 o.tabstop = 2
