@@ -5,6 +5,7 @@ local g = vim.g
 require("lspsaga.codeaction")
 
 g.lazyvim_picker = "telescope"
+g.lazyvim_blink_main = false
 
 -------------------------------------- options ------------------------------------------
 o.laststatus = 3
