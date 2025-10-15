@@ -9,16 +9,14 @@ M.on_attach = function(client, bufnr)
 			desc = "LSP: " .. desc
 		end
 
-		map("n", keys, func, { buffer = bufnr, remap = false, desc = desc })
+		map("n", keys, func, { buffer = bufnr, noremap = true, silent = true, desc = desc })
 	end
 
 	-- Useful LSP Keymaps
 	-- nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 	-- nmap("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
 	-- nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-	nmap("<leader>rn", function()
-		vim.lsp.buf.rename()
-	end, "[R]e[n]ame")
+	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 
 	-- nmap("<leader>a", vim.lsp.buf.code_action, "[C]ode [A]ction")
 	-- nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
@@ -68,7 +66,8 @@ M.on_init = function(client, _)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
-
+-- M.capabilities.offsetEncoding = { "utf-8" }
+-- M.capabilities.general.positionEncodings = { "utf-8" }
 M.capabilities.textDocument.completion.completionItem = {
 	documentationFormat = { "markdown", "plaintext" },
 	snippetSupport = true,
@@ -244,6 +243,7 @@ M.defaults = function()
 		on_init = M.on_init,
 		filetypes = {
 			"html",
+			"htmlangular",
 			"typescript",
 			"typescriptreact",
 			"javascriptreact",

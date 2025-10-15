@@ -70,6 +70,7 @@ return {
 	keys = {
 		{ "<leader>a", desc = "[C]ode [A]ction", "<cmd>Lspsaga code_action<CR>", mode = { "n" } },
 		{ "<leader>o", desc = "Toogle [O]utline", "<cmd>Lspsaga outline<CR>", mode = { "n" } },
+		-- { "<leader>rn", desc = "[R]e[n]ame", "<cmd>Lspsaga rename<CR>", mode = { "n" } },
 		{ "gp", desc = "[P]eek Definition", "<cmd>Lspsaga peek_definition<CR>", mode = { "n" } },
 	},
 	dependencies = {

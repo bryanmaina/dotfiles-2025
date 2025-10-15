@@ -11,6 +11,7 @@ return {
 			"delve",
 			"dockerfile-language-server",
 			"docker-compose-language-service",
+			"doctoc",
 			"emmet-ls",
 			"eslint_d",
 			"google-java-format",
@@ -39,7 +40,7 @@ return {
 			"superhtml",
 			-- "tailwindcss-language-server",
 			"taplo",
-			-- "yamlfix",
+			"yamlfmt",
 		},
 	},
 }

@@ -48,3 +48,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 		vim.opt.filetype = "yaml.docker-compose"
 	end,
 })
+
+vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = "#928374" })
+
+vim.api.nvim_set_hl(0, "SnacksPickerPathHidden", { fg = "#928374" })

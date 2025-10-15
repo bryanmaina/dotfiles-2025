@@ -25,14 +25,18 @@ return {
 			graphql = { "prettierd" },
 			go = { "gofmt" },
 			html = { "superhtml" },
-			htmlangular = { "prettier" },
+			htmlangular = { "prettierd" },
 			java = { "google-java-format" },
 			kotlin = { "ktlint" },
 			javascript = { "prettierd" },
 			javascriptreact = { "prettierd" },
 			json = { "prettierd" },
 			lua = { "stylua" },
-			markdown = { "prettierd" },
+			markdown = {
+				"deno_fmt",
+				-- "doctoc",
+				"yamlfmt",
+			},
 			proto = { "buf" },
 			python = {
 				"ruff_fix",
@@ -48,7 +52,7 @@ return {
 			typescript = { "prettierd" },
 			typescriptreact = { "prettierd" },
 			xml = { "xmllint" },
-			-- yaml = { "yamlfix" },
+			yaml = { "yamlfmt" },
 		},
 		formatters = {
 			leptosfmt = {
