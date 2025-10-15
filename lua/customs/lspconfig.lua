@@ -2,61 +2,123 @@ local M = {}
 local map = vim.keymap.set
 
 -- export on_attach & capabilities
-M.on_attach = function(client, bufnr)
-	-- vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
-	local nmap = function(keys, func, desc)
-		if desc then
-			desc = "LSP: " .. desc
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+		-- Enable completion triggered by <c-x><c-o>
+		vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+		local nmap = function(keys, func, desc)
+			if desc then
+				desc = "LSP: " .. desc
+			end
+			map("n", keys, func, { buffer = ev.buf, noremap = true, silent = true, desc = desc })
+		end
+		
+		-- Useful LSP Keymaps
+		-- nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+		-- nmap("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
+		-- nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+		nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+
+		-- nmap("<leader>a", vim.lsp.buf.code_action, "[C]ode [A]ction")
+		-- nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+		-- nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+		-- nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+		nmap("<leader>mr", vim.lsp.codelens.run, "[R]un [C]odelens")
+		nmap("<Leader>ih", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		end, "[I]nlay [H]ints")
+
+		-- See `:help K` for why this keymap
+		nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+		nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+
+		-- Lesser used LSP functionality
+		-- nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+		nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
+		nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+		nmap("<leader>wl", function()
+			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+		end, "[W]orkspace [L]ist Folders")
+
+		-- Diagnostics
+		-- nmap("gl", vim.diagnostic.open_float, "[O]pen [D]iagnostics")
+		nmap("[d", function()
+			vim.diagnostic.jump({ count = 1, float = true })
+		end, "[G]oto [P]revious Diagnostics")
+		nmap("]d", function()
+			vim.diagnostic.jump({ count = -1, float = true })
+		end, "[G]oto [N]ext Diagnostics")
+
+		-- Enable Inalay Hints if the lsp server supports it
+		if ev.client.server_capabilities.inlayHintProvider then
+			vim.lsp.inlay_hint.enable(true)
 		end
 
-		map("n", keys, func, { buffer = bufnr, noremap = true, silent = true, desc = desc })
-	end
+		if ev.client.name == "ruff" then
+			client.server_capabilities.hoverProvider = false
+		end
 
-	-- Useful LSP Keymaps
-	-- nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-	-- nmap("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
-	-- nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+	end,
+})
 
-	-- nmap("<leader>a", vim.lsp.buf.code_action, "[C]ode [A]ction")
-	-- nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
-	-- nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-	-- nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-	nmap("<leader>mr", vim.lsp.codelens.run, "[R]un [C]odelens")
-	nmap("<Leader>ih", function()
-		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-	end, "[I]nlay [H]ints")
 
-	-- See `:help K` for why this keymap
-	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-	nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-
-	-- Lesser used LSP functionality
-	-- nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-	nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-	nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-	nmap("<leader>wl", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, "[W]orkspace [L]ist Folders")
-
-	-- Diagnostics
-	-- nmap("gl", vim.diagnostic.open_float, "[O]pen [D]iagnostics")
-	nmap("[d", function()
-		vim.diagnostic.jump({ count = 1, float = true })
-	end, "[G]oto [P]revious Diagnostics")
-	nmap("]d", function()
-		vim.diagnostic.jump({ count = -1, float = true })
-	end, "[G]oto [N]ext Diagnostics")
-
-	-- Enable Inalay Hints if the lsp server supports it
-	if client.server_capabilities.inlayHintProvider then
-		vim.lsp.inlay_hint.enable(true)
-	end
-
-	if client.name == "ruff" then
-		client.server_capabilities.hoverProvider = false
-	end
-end
+-- M.on_attach = function(client, bufnr)
+-- 	-- vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
+-- 	local nmap = function(keys, func, desc)
+-- 		if desc then
+-- 			desc = "LSP: " .. desc
+-- 		end
+--
+-- 		map("n", keys, func, { buffer = bufnr, noremap = true, silent = true, desc = desc })
+-- 	end
+--
+-- 	-- Useful LSP Keymaps
+-- 	-- nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+-- 	-- nmap("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
+-- 	-- nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+-- 	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+--
+-- 	-- nmap("<leader>a", vim.lsp.buf.code_action, "[C]ode [A]ction")
+-- 	-- nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+-- 	-- nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+-- 	-- nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+-- 	nmap("<leader>mr", vim.lsp.codelens.run, "[R]un [C]odelens")
+-- 	nmap("<Leader>ih", function()
+-- 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+-- 	end, "[I]nlay [H]ints")
+--
+-- 	-- See `:help K` for why this keymap
+-- 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+-- 	nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+--
+-- 	-- Lesser used LSP functionality
+-- 	-- nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+-- 	nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
+-- 	nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+-- 	nmap("<leader>wl", function()
+-- 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+-- 	end, "[W]orkspace [L]ist Folders")
+--
+-- 	-- Diagnostics
+-- 	-- nmap("gl", vim.diagnostic.open_float, "[O]pen [D]iagnostics")
+-- 	nmap("[d", function()
+-- 		vim.diagnostic.jump({ count = 1, float = true })
+-- 	end, "[G]oto [P]revious Diagnostics")
+-- 	nmap("]d", function()
+-- 		vim.diagnostic.jump({ count = -1, float = true })
+-- 	end, "[G]oto [N]ext Diagnostics")
+--
+-- 	-- Enable Inalay Hints if the lsp server supports it
+-- 	if client.server_capabilities.inlayHintProvider then
+-- 		vim.lsp.inlay_hint.enable(true)
+-- 	end
+--
+-- 	if client.name == "ruff" then
+-- 		client.server_capabilities.hoverProvider = false
+-- 	end
+-- end
 
 -- disable semanticTokens
 M.on_init = function(client, _)
@@ -90,10 +152,11 @@ M.defaults = function()
 	dofile(vim.g.base46_cache .. "lsp")
 	require("nvchad.lsp").diagnostic_config()
 
-	local lspconfig = require("lspconfig")
+	-- local lspconfig = require("lspconfig")
+	local lspconfig = vim.lsp.config
 
 	lspconfig.dockerls.setup({
-		on_attach = M.on_attach,
+		-- on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 		settings = {
@@ -108,7 +171,7 @@ M.defaults = function()
 	})
 
 	lspconfig.pyright.setup({
-		on_attach = M.on_attach,
+		-- on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 		settings = {
@@ -126,17 +189,17 @@ M.defaults = function()
 	lspconfig.ruff.setup({
 		on_init = M.on_init,
 		capabilities = M.capabilities,
-		on_attach = M.on_attach,
+		-- on_attach = M.on_attach,
 	})
 
 	lspconfig.angularls.setup({
 		on_init = M.on_init,
 		capabilities = M.capabilities,
-		on_attach = M.on_attach,
+		-- on_attach = M.on_attach,
 	})
 
 	lspconfig.jdtls.setup({
-		on_attach = M.on_attach,
+		-- on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 		settings = {
@@ -155,7 +218,7 @@ M.defaults = function()
 	})
 
 	lspconfig.lua_ls.setup({
-		on_attach = M.on_attach,
+		-- on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 
@@ -180,7 +243,7 @@ M.defaults = function()
 	})
 
 	lspconfig.tailwindcss.setup({
-		on_attach = M.on_attach,
+		-- on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 		filetypes = {
@@ -215,7 +278,7 @@ M.defaults = function()
 	})
 
 	lspconfig["cssls"].setup({
-		on_attach = M.on_attach,
+		-- on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 		filetypes = {
@@ -226,19 +289,19 @@ M.defaults = function()
 	})
 
 	lspconfig["html"].setup({
-		on_attach = M.on_attach,
+		-- on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 	})
 
 	lspconfig.ts_ls.setup({
-		on_attach = M.on_attach,
+		-- on_attach = M.on_attach,
 		on_init = M.on_init,
 		capabilities = M.capabilities,
 	})
 
 	lspconfig.emmet_ls.setup({
-		on_attach = M.on_attach,
+		-- on_attach = M.on_attach,
 		capabilities = M.capabilities,
 		on_init = M.on_init,
 		filetypes = {
