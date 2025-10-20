@@ -61,6 +61,7 @@ M.on_init = function(client, _)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
 -- M.capabilities.offsetEncoding = { "utf-8" }
 -- M.capabilities.general.positionEncodings = { "utf-8" }
 M.capabilities.textDocument.completion.completionItem = {
@@ -121,6 +122,20 @@ M.defaults = function()
 	lspconfig("ruff", {
 		on_init = M.on_init,
 		capabilities = M.capabilities,
+		init_options = {
+			settings = {
+				args = {
+					"--ignore",
+					"F821",
+					"--ignore",
+					"E402",
+					"--ignore",
+					"E722",
+					"--ignore",
+					"E712",
+				},
+			},
+		},
 		-- on_attach = M.on_attach,
 	})
 
