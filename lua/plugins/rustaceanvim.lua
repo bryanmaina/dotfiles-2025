@@ -8,6 +8,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"antoinemadec/FixCursorHold.nvim",
 		"nvim-treesitter/nvim-treesitter",
+		"nvim-neotest/neotest-python",
 		-- needed by rustaceanvim
 		"nvim-neotest/neotest",
 	},
@@ -76,6 +77,7 @@ return {
 		require("neotest").setup({
 			adapters = {
 				require("rustaceanvim.neotest"),
+				require("neotest-python"),
 			},
 		})
 
